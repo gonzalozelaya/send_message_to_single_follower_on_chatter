@@ -1,0 +1,20 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Heredamos la vista original -->
+    <template id="mail_composer_followers_inherit" inherit_id="mail.Composer" t-inherit-mode="extension">
+        <!-- Seleccionamos el lugar donde agregar el bloque de seguidores -->
+        <xpath expr="//div[@t-ref='composer']" position="inside">
+            <!-- Aquí añadimos el nuevo bloque de seguidores -->
+            <div class="o-mail-Composer-followers mt-3">
+                <label for="followers">Followers:</label>
+                <select id="followers" class="form-control" t-model="selectedFollower.id">
+                    <option value="null" disabled="true" selected="true">Select a follower</option>
+                    <t t-foreach="props.composer.followers" t-as="follower">
+                        <option t-att-value="follower.id">
+                            <t t-esc="follower.name"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+    </template>
